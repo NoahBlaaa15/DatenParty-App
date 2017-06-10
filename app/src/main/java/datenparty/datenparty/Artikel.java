@@ -9,6 +9,8 @@ public class Artikel {
 
     public String ueberschrift;
 
+    public String link;
+
     public String toString(){
 
     return ueberschrift; }

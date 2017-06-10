@@ -3,6 +3,8 @@ package datenparty.datenparty;
 
 
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -43,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-               Artikel listItem = (Artikel)listView.getItemAtPosition(position);
+               final Artikel listItem = (Artikel)listView.getItemAtPosition(position);
 
                 //alert.setTitle("Do you want to logout?");
                 alert.setMessage(listItem.inhalt);
@@ -53,9 +55,11 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
 
-                alert.setNegativeButton("Cancel",
+                alert.setNegativeButton("Weiter lesen ...",
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int whichButton) {
+                                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(listItem.link));
+                                startActivity(browserIntent);
                             }
                         });
 
@@ -102,6 +106,7 @@ public class MainActivity extends AppCompatActivity {
                         Artikel a = new Artikel();
                         a.ueberschrift = artikel.get("heading").toString();
                         a.inhalt = artikel.get("article").toString();
+                        a.link = artikel.get("link").toString();
                         adapter.add(a);
                     }
                         adapter.notifyDataSetChanged();
