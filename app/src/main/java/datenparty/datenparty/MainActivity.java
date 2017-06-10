@@ -10,6 +10,7 @@ import android.widget.ListView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import org.jsoup.Jsoup;
@@ -26,8 +27,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ListView listView = (ListView) findViewById(R.id.artikelliste);
-        ArrayList<String> values = new ArrayList<String>();
-        final ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+        ArrayList<Artikel> values = new ArrayList<Artikel>();
+        final ArrayAdapter<Artikel> adapter = new ArrayAdapter<Artikel>(this,
                 android.R.layout.simple_list_item_1, android.R.id.text1, values);
         listView.setAdapter(adapter);
 
@@ -50,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-        public void datenholen(final ArrayAdapter<String> adapter ) throws IOException, ParseException, JSONException {
+        public void datenholen(final ArrayAdapter<Artikel> adapter ) throws IOException, ParseException, JSONException {
            // try {
                 Document d = Jsoup.connect("http://maschini.de:5001/alt").get();
                 JSONParser parser = new JSONParser();
@@ -63,8 +64,11 @@ public class MainActivity extends AppCompatActivity {
 
 
                     for(int i=0; i<array.size(); i++) {
-                        org.json.simple.JSONObject artikel = (org.json.simple.JSONObject) array.get(i);
-                        adapter.add(artikel.get("heading").toString());
+                        JSONObject artikel = (JSONObject) array.get(i);
+                        Artikel a = new Artikel();
+                        a.ueberschrift = artikel.get("heading").toString();
+                        a.inhalt = artikel.get("article").toString();
+                        adapter.add(a);
                     }
                         adapter.notifyDataSetChanged();
 
