@@ -13,5 +13,5 @@ public class Artikel {
 
     return ueberschrift; }
 
-    
+
 }

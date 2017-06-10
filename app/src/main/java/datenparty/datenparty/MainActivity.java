@@ -2,9 +2,14 @@ package datenparty.datenparty;
 
 
 
+import android.content.DialogInterface;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.view.ContextThemeWrapper;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -26,11 +31,40 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        ListView listView = (ListView) findViewById(R.id.artikelliste);
+        final ListView listView = (ListView) findViewById(R.id.artikelliste);
         ArrayList<Artikel> values = new ArrayList<Artikel>();
         final ArrayAdapter<Artikel> adapter = new ArrayAdapter<Artikel>(this,
                 android.R.layout.simple_list_item_1, android.R.id.text1, values);
         listView.setAdapter(adapter);
+
+
+        final AlertDialog.Builder alert = new AlertDialog.Builder(this);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+               Artikel listItem = (Artikel)listView.getItemAtPosition(position);
+
+                //alert.setTitle("Do you want to logout?");
+                alert.setMessage(listItem.inhalt);
+
+                alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                    }
+                });
+
+                alert.setNegativeButton("Cancel",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int whichButton) {
+                            }
+                        });
+
+                alert.show();
+            }
+        });
+
+
+
 
 
 
