@@ -35,8 +35,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         final ListView listView = (ListView) findViewById(R.id.artikelliste);
         ArrayList<Artikel> values = new ArrayList<Artikel>();
-        final ArrayAdapter<Artikel> adapter = new ArrayAdapter<Artikel>(this,
-                R.layout.list_item, R.id.heading, values);
+        final ArtikelAdapter adapter = new ArtikelAdapter(this, values);
         listView.setAdapter(adapter);
 
 
