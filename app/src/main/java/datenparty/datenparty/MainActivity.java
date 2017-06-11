@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
                 //alert.setTitle("Do you want to logout?");
                 alert.setMessage(listItem.inhalt);
 
-                alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                alert.setPositiveButton("Schließen", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int whichButton) {
                     }
                 });
