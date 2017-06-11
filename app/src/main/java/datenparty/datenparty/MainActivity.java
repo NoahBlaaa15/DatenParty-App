@@ -47,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
                final Artikel listItem = (Artikel)listView.getItemAtPosition(position);
 
                 //alert.setTitle("Do you want to logout?");
+                alert.setTitle(listItem.ueberschrift);
                 alert.setMessage(listItem.inhalt);
 
                 alert.setPositiveButton("Schließen", new DialogInterface.OnClickListener() {
@@ -90,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
 
         public void datenholen(final ArrayAdapter<Artikel> adapter ) throws IOException, ParseException, JSONException {
            // try {
-                Document d = Jsoup.connect("http://maschini.de:5001/alt").get();
+                Document d = Jsoup.connect("http://maschini.de:5001/api").get();
                 JSONParser parser = new JSONParser();
                 final org.json.simple.JSONArray array = (org.json.simple.JSONArray) parser.parse(d.getElementsByTag("body").text());
 
