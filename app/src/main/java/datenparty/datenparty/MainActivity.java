@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
         final ListView listView = (ListView) findViewById(R.id.artikelliste);
         ArrayList<Artikel> values = new ArrayList<Artikel>();
         final ArrayAdapter<Artikel> adapter = new ArrayAdapter<Artikel>(this,
-                android.R.layout.simple_list_item_1, android.R.id.text1, values);
+                R.layout.list_item, R.id.heading, values);
         listView.setAdapter(adapter);
 
 
@@ -107,6 +107,8 @@ public class MainActivity extends AppCompatActivity {
                         a.ueberschrift = artikel.get("heading").toString();
                         a.inhalt = artikel.get("article").toString();
                         a.link = artikel.get("link").toString();
+                        a.quelle = artikel.get("author").toString();
+                        a.category = artikel.get("category").toString();
                         adapter.add(a);
                     }
                         adapter.notifyDataSetChanged();

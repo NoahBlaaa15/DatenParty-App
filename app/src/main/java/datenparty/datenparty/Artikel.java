@@ -8,6 +8,10 @@ public class Artikel {
 
     public String link;
 
+    public String quelle;
+
+    public String category;
+
     public String toString(){
 
     return ueberschrift; }
