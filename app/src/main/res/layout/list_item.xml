@@ -40,5 +40,5 @@
         android:layout_weight="1"
         android:text="TextView"
         android:textSize="22sp"
-        android:textColor="@android:color/background_dark"/>
+        android:textColor="@android:color/white"/>
 </LinearLayout>
